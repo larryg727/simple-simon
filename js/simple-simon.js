@@ -62,6 +62,8 @@ $(document).ready(function () {
             console.log("correct");
             gameRound();
         } else {
+            $("#status").html("<h1>Game Over</h1>");
+            starter();
             console.log("what a looser!");
         }
     }
@@ -75,27 +77,29 @@ $(document).ready(function () {
             playKey();
             roundCounter();
             userInput();
-        }, 1500);
+        }, 1800);
     }
    // brings up click to start animation and start of game click event
-    $("#gameName").on({
-        mouseenter: function () {
-            $("#status").html("<h1>Click To Start</h1>");
-            $("#status").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow");
-        },
-        click: function(){
-            $("#status").html("<h1>Ready..</h1>");
-            $("#status").stop(true, true);
-            $(this).off();
-            key.length = 0;    // resets for new game
-            gameRound();
-        }
-    })
-
+   function starter() {
+       $("#gameName").on({
+           mouseenter: function () {
+               $("#status").html("<h1>Click To Start</h1>");
+               $("#gameName").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").show();
+           },
+           click: function () {
+               $("#status").html("<h1>Ready..</h1>");
+               $("#gameName").stop(true, true);
+               $("#gameName").show();
+               $("#gameName").off();
+               key.length = 0;    // resets for new game
+               gameRound();
+           }
+       });
+   }
     function roundCounter(){
         var round = key.length;
         $("#status").html("<h2>Round - " + round + "</h2>");
         $("#status").show();
     }
-
+starter();
 });
