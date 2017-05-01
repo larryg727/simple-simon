@@ -9,12 +9,6 @@ $(document).ready(function () {
     var idVar;
 
 
-    //start button. here we go..
-    $("#start").click(function () {
-        key.length = 0;    // resets for new game
-        gameRound();
-
-    });
 
     //generate new random number function
     function randomGenerator() {
@@ -79,9 +73,29 @@ $(document).ready(function () {
             randomGenerator();
             addToKey();
             playKey();
+            roundCounter();
             userInput();
         }, 1500);
     }
+   // brings up click to start animation and start of game click event
+    $("#gameName").on({
+        mouseenter: function () {
+            $("#status").html("<h1>Click To Start</h1>");
+            $("#status").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow");
+        },
+        click: function(){
+            $("#status").html("<h1>Ready..</h1>");
+            $("#status").stop(true, true);
+            $(this).off();
+            key.length = 0;    // resets for new game
+            gameRound();
+        }
+    })
 
+    function roundCounter(){
+        var round = key.length;
+        $("#status").html("<h2>Round - " + round + "</h2>");
+        $("#status").show();
+    }
 
 });
