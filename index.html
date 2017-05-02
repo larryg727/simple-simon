@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="container">
-    <div id="status"></div>
+    <div id="status"><h2 class="x2">Points X2</h2></div>
 
     <div id="gameName">
         <h1>Simple Simon</h1>
@@ -18,23 +18,33 @@
     <div id="selectorContainer">
         <div class="selectors" id="s-1">
 
-            <div id="corner1"></div>
+            <div class="dummy" id="corner1"></div>
             <div class="a-1"></div>
         </div>
         <div class="selectors" id="s-2">
-            <div id="corner2"></div>
+            <div class="dummy" id="corner2"></div>
             <div class="a-2"></div>
         </div>
         <div class="selectors" id="s-3">
-            <div id="corner3"></div>
+            <div class="dummy" id="corner3"></div>
             <div class="a-3"></div>
         </div>
         <div class="selectors" id="s-4">
-            <div id="corner4"></div>
+            <div class="dummy" id="corner4"></div>
             <div class="a-4"></div>
         </div>
     </div>
-<div id="highScore"></div>
+    <div id="highScore"></div>
+<div id="levelSwitch">
+    <h2>Difficulty</h2>
+
+    <label class="switch">
+        <input id="difficulty" type="checkbox">
+        <div class="slider round"></div>
+    </label>
+
+    <p>Simple &nbsp;&nbsp;&nbsp;&nbsp; Reverse</p>
+</div>
 </div>
 <script src="js/jquery-2.2.4.min.js"></script>
 <script src="js/simple-simon.js"></script>

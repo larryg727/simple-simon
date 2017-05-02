@@ -4,7 +4,12 @@ body {
     width: 100%;
     margin: 0;
     background-color: #000000;
+    color: #5DFC01;
     font-family: 'Share Tech Mono', monospace;
+}
+body.reverse{
+    background-color: #5dfc01;
+    color: #000000;
 }
 
 #container {
@@ -101,6 +106,9 @@ body {
     z-index: 1;
 }
 
+.dummy.active{
+    background-color: #5dfc01 !important;
+}
 .a-1 {
     width: 100%;
     padding-top: 100%;
@@ -137,14 +145,14 @@ body {
     position: absolute;
     width: 20%;
     text-align: center;
-    top: 41%;
+    top: 40.5%;
     left: 40%;
     z-index: 2;
 }
 
 #gameName > h1 {
     font-size: 4.5vw;
-    color: #5DFC01;
+
 }
 
 #status {
@@ -152,15 +160,105 @@ body {
     width: 90%;
     text-align: center;
     margin: 5px auto;
-    height: 110px;
-    color: #5DFC01;
+    height: 105px;
     display: block;
 }
+#status>h1, h2 {
+    margin: 10px auto;
+}
+.x2 {
+    display: none;
+}
 #highScore{
-    color: #5DFC01;
+    display: inline-block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+#highScore>h1{
+    font-size: 3vw;
+    margin-bottom: 0;
+}
+#levelSwitch {
+    position:absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 34px;
+    border: 3px solid white;
+    border-radius: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #777;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #5DFC01;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #5dfc01;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(66px);
+    -ms-transform: translateX(66px);
+    transform: translateX(66px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
 }
 
 
+/*----media queries-----*/
+
+@media screen and (min-width: 1400px){
+    #gameName>h1{
+        font-size: 65px;
+    }
+    #gameName {
+        top: 41%
+    }
+}
 @media screen and (max-width: 1220px) {
     #gameName {
         top: 44%
@@ -201,20 +299,42 @@ body {
     #status>h1{
         font-size: 8vw;
     }
+    #levelSwitch{
+        bottom: -100px;
+    }
 }
 @media screen and (max-width: 650px){
     #selectorContainer {
         width: 100%
     }
     #gameName {
-         top: 42%;
-
+         top: 42% !important;
      }
+    #highScore>h1{
+        font-size: 5vw;
+    }
+    #highScore {
+        bottom: -40px;
+    }
+    #levelSwitch {
+        bottom: -120px;
+    }
 }
 @media screen and (max-width: 450px){
     #gameName {
-        top: 45%;
+        top: 35% !important;
         left: 38%;
         font-size: 9vw;
+    }
+    #levelSwitch{
+        position: relative;
+        display: block;
+        bottom: 0;
+    }
+    #highScore{
+        position: relative;
+        display: block;
+        text-align: center;
+        bottom: 0;
     }
 }
