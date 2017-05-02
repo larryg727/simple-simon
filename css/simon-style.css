@@ -156,6 +156,9 @@ body {
     color: #5DFC01;
     display: block;
 }
+#highScore{
+    color: #5DFC01;
+}
 
 
 @media screen and (max-width: 1220px) {

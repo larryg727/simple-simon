@@ -7,6 +7,8 @@ $(document).ready(function () {
     var userEntry = [];  // this will be the user entered array
     var randomNumber; //declaring as global variable
     var idVar;
+    var highScore = 0;
+    var finalScore;
 
 
 
@@ -63,8 +65,10 @@ $(document).ready(function () {
             gameRound();
         } else {
             $("#status").html("<h1>Game Over</h1>");
-            starter();
+            finalScore = key.length - 1;
             console.log("what a looser!");
+            console.log(finalScore);
+            highScoreCheck();
         }
     }
 
@@ -101,5 +105,18 @@ $(document).ready(function () {
         $("#status").html("<h2>Round - " + round + "</h2>");
         $("#status").show();
     }
+
+    function highScoreCheck() {
+        if (finalScore > highScore) {
+            $("#highScore").html("<h1>New HIGH SCORE!</h1>");
+            highScore = finalScore;
+            setTimeout(function () {
+                $("#highScore").html("<h2>HIGH SCORE: " + highScore + "</h2>")
+            }, 4000);
+        }
+        finalScore = ' ';
+        starter();
+    }
+
 starter();
 });
