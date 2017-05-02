@@ -180,7 +180,7 @@ $(document).ready(function () {
 
     function highScoreCheck() {
         if (finalScore > highScore) {
-            $("#gameName").css("top", "38%");
+            // $("#gameName").css("top", "38%");
             $("#highScore").html("<h1>New HIGH SCORE!</h1>");
             highScore = finalScore;
             setTimeout(function () {
@@ -194,7 +194,7 @@ $(document).ready(function () {
     // reverse level highscore check
     function highScoreCheckReverse() {
         if (finalScore > highScore) {
-            $("#gameName").css("top", "38%");
+            // $("#gameName").css("top", "38%");
             $("#highScore").html("<h1>New HIGH SCORE!</h1>");
             highScore = finalScore;
             setTimeout(function () {

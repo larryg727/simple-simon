@@ -145,7 +145,7 @@ body.reverse{
     position: absolute;
     width: 20%;
     text-align: center;
-    top: 40.5%;
+    top: 42%;
     left: 40%;
     z-index: 2;
 }
@@ -256,14 +256,13 @@ input:checked + .slider:before {
         font-size: 65px;
     }
     #gameName {
-        top: 41%
+        top: 42%;
+    }
+    #highScore>h1{
+        font-size: 40px;
     }
 }
 @media screen and (max-width: 1220px) {
-    #gameName {
-        top: 44%
-    }
-
     #selectorContainer {
         width: 55%
     }
