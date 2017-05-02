@@ -32,6 +32,7 @@ body.reverse{
     display: inline-block;
     margin: 3px;
     position: relative;
+    z-index: 1;
 }
 
 #s-1 {
@@ -147,6 +148,7 @@ body.reverse{
     text-align: center;
     top: 42%;
     left: 40%;
+    border-radius: 50%;
     z-index: 2;
 }
 

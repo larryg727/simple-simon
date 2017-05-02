@@ -12,6 +12,7 @@ $(document).ready(function () {
 
 
 
+
     //generate new random number function
     function randomGenerator() {
         randomNumber = Math.floor((Math.random() * 4) + 1);
@@ -29,7 +30,9 @@ $(document).ready(function () {
 
         key.forEach(function (el, i) {
             var play = ".a-" + key[i];
+             var sound = "#tone" + key[i];
             setTimeout(function () {
+                $(sound)[0].play();
                 $(play).css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 900);
             }, (i + "700"));
         })
@@ -43,6 +46,10 @@ $(document).ready(function () {
             userEntry.push(idVar[1]);
             console.log("button pushed " + idVar[1]);
             console.log("user array " + userEntry);
+            setTimeout(function(){
+            var sound2 = "#tone" + idVar[1];    // slight delay to enable idvar to be defined
+            $(sound2)[0].play();
+            }, 50);
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
             if (userEntry.length === key.length) {
@@ -62,6 +69,10 @@ $(document).ready(function () {
             userEntry.push(idVar[1]);
             console.log("button pushed " + idVar[1]);
             console.log("user array " + userEntry);
+            setTimeout(function(){
+                var sound2 = "#tone" + idVar[1];  // slight delay to enable idvar to be defined
+                $(sound2)[0].play();
+            }, 50);
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
             if (userEntry.length === key.length) {
@@ -85,6 +96,7 @@ $(document).ready(function () {
         } else {
             $("#status").html("<h1>Game Over</h1>");
             finalScore = key.length - 1;
+            $("#difficulty").removeAttr("disabled");
             console.log("what a looser!");
             console.log(finalScore);
             highScoreCheck();
@@ -104,6 +116,7 @@ $(document).ready(function () {
         } else {
             $("#status").html("<h1>Game Over</h1>");
             finalScore = (key.length - 1) * 2;
+            $("#difficulty").removeAttr("disabled");
             console.log("what a looser!");
             console.log(finalScore);
             highScoreCheckReverse();
@@ -146,6 +159,7 @@ $(document).ready(function () {
                $("#gameName").stop(true, true);
                $("#gameName").show();
                $("#gameName").off();
+               $("#difficulty").attr("disabled", "disabled");
                key.length = 0;    // resets for new game
                gameRound();
            }
@@ -165,6 +179,7 @@ $(document).ready(function () {
                 $("#gameName").stop(true, true);
                 $("#gameName").show();
                 $("#gameName").off();
+                $("#difficulty").attr("disabled", "disabled");
                 key.length = 0;    // resets for new game
                 gameRoundReverse();
             }
