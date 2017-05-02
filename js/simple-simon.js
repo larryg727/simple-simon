@@ -94,6 +94,9 @@ $(document).ready(function () {
             console.log("correct");
             gameRound();
         } else {
+            setTimeout(function(){
+                $("#gameOver")[0].play();
+            }, 400);
             $("#status").html("<h1>Game Over</h1>");
             finalScore = key.length - 1;
             $("#difficulty").removeAttr("disabled");
@@ -114,6 +117,9 @@ $(document).ready(function () {
             console.log("correct");
             gameRoundReverse();
         } else {
+            setTimeout(function(){
+                $("#gameOver")[0].play();
+            }, 400);
             $("#status").html("<h1>Game Over</h1>");
             finalScore = (key.length - 1) * 2;
             $("#difficulty").removeAttr("disabled");
@@ -132,7 +138,7 @@ $(document).ready(function () {
             playKey();
             roundCounter();
             userInput();
-        }, 1800);
+        }, 2500);
     }
 
     // game round for reverse level
@@ -144,7 +150,7 @@ $(document).ready(function () {
             playKey();
             roundCounter();
             userReverseInput();
-        }, 1800);
+        }, 2500);
     }
 
    // brings up click to start animation and start of game click event
@@ -155,6 +161,7 @@ $(document).ready(function () {
                $("#gameName").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").show();
            },
            click: function () {
+               $("#startSound")[0].play();
                $("#status").html("<h1>Ready..</h1>");
                $("#gameName").stop(true, true);
                $("#gameName").show();
@@ -174,6 +181,7 @@ $(document).ready(function () {
                 $("#gameName").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").fadeOut("slow").fadeIn("slow").show();
             },
             click: function () {
+                $("#startSound")[0].play();
                 $(".x2").hide();
                 $("#status").html("<h1>Repeat in reverse.</h1>");
                 $("#gameName").stop(true, true);
