@@ -320,7 +320,7 @@ $(document).ready(function () {
 
     //slide down control for keyboard controls key
     $("#keyBtn").click(function(){
-       $("#keyList").slideToggle();
+       $("#keyList").slideToggle(400);
     });
 
 starter();

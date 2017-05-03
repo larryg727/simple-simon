@@ -43,9 +43,11 @@ body.reverse{
     width: 24px;
     color: black;
     font-size: 26px;
+    font-weight: bold;
     margin: 3px auto;
     display: inline-block;
     border: 2px solid white;
+    border-radius: 5px;
 }
 #a {
     background-color: red;
