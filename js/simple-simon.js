@@ -44,7 +44,6 @@ $(document).ready(function () {
     // lets the user enter their selection
     function userInput() {
         $(document).keyup(function(event){
-            console.log(userEntry);
             var entered;
             switch (event.keyCode) {
                 case 65:
@@ -99,7 +98,6 @@ $(document).ready(function () {
     // user input function for reverse level
     function userReverseInput() {
         $(document).keyup(function(event){
-            console.log(userEntry);
             var entered;
             switch (event.keyCode) {
                 case 65:
@@ -320,6 +318,10 @@ $(document).ready(function () {
         }
     });
 
+    //slide down control for keyboard controls key
+    $("#keyBtn").click(function(){
+       $("#keyList").slideToggle();
+    });
 
 starter();
 });

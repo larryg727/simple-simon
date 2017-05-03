@@ -23,8 +23,42 @@ body.reverse{
     width: 50%;
     margin: 0 auto;
     text-align: center;
+    position: relative;
 }
 
+#keyCnt {
+    /*display: inline-block;*/
+    position: absolute;
+    top: 75px;
+    right: 0;
+}
+#keyList{
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    display: none;
+}
+.keyMap {
+    padding: 12px;
+    width: 24px;
+    color: black;
+    font-size: 26px;
+    margin: 3px auto;
+    display: inline-block;
+    border: 2px solid white;
+}
+#a {
+    background-color: red;
+}
+#s {
+    background-color: blue;
+}
+#z {
+    background-color: green;
+}
+#x {
+    background-color: #dddd00;
+}
 .selectors {
     width: 40%;
     /*padding-top: 40%;*/
