@@ -51,7 +51,7 @@ body.reverse{
 }
 
 #s-4 {
-    background-color: yellow;
+    background-color: #dddd00;
     border-bottom-right-radius: 100%;
 }
 
@@ -138,7 +138,7 @@ body.reverse{
     width: 100%;
     padding-top: 100%;
     border-bottom-right-radius: 100%;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.8);
     visibility: hidden;
 }
 
@@ -169,6 +169,7 @@ body.reverse{
     margin: 10px auto;
 }
 .x2 {
+    font-size: 1.3em;
     display: none;
 }
 #highScore{

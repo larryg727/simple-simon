@@ -9,20 +9,18 @@ $(document).ready(function () {
     var idVar;
     var highScore = 0;
     var finalScore;
-
+    var level = [200, 500];
 
 
 
     //generate new random number function
     function randomGenerator() {
         randomNumber = Math.floor((Math.random() * 4) + 1);
-        console.log("random number " + randomNumber);
     }
 
     // add new entry to answer key
     function addToKey() {
         key.push(randomNumber);
-        console.log("key array " + key);
     }
 
     // shows the player the current key
@@ -31,21 +29,50 @@ $(document).ready(function () {
         key.forEach(function (el, i) {
             var play = ".a-" + key[i];
              var sound = "#tone" + key[i];
+             var time = i + "000";
+            var delay = parseInt(time) - (i * level[0]);
             setTimeout(function () {
                 $(sound)[0].play();
-                $(play).css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 900);
-            }, (i + "700"));
+                $(play).css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, level[1]);
+            }, delay);
         })
     }
 
     // lets the user enter their selection
     function userInput() {
+        $(document).keyup(function(event){
+            console.log(userEntry);
+            switch (event.keyCode) {
+                case 65:
+                    userEntry.push(1);
+                    $("#s-1").children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+                    $("#tone1")[0].play();
+                    break;
+                case 83:
+                    userEntry.push(2);
+                    $("#s-2").children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+                    $("#tone2")[0].play();
+                    break;
+                case 90:
+                    userEntry.push(3);
+                    $("#s-3").children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+                    $("#tone3")[0].play();
+                    break;
+                case 88:
+                    userEntry.push(4);
+                    $("#s-4").children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+                    $("#tone4")[0].play();
+                    break;
+            }
+            if (userEntry.length === key.length) {
+                $(document).off();
+                checkAnswer();
+            }
+        });
         $(".selectors").click(function() {
-            $(this).children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+            $(this).children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 500);
             idVar = $(this).attr("id").split("-");
             userEntry.push(idVar[1]);
-            console.log("button pushed " + idVar[1]);
-            console.log("user array " + userEntry);
             setTimeout(function(){
             var sound2 = "#tone" + idVar[1];    // slight delay to enable idvar to be defined
             $(sound2)[0].play();
@@ -53,8 +80,6 @@ $(document).ready(function () {
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
             if (userEntry.length === key.length) {
-                console.log(userEntry.length);
-                console.log(key.length);
                 $(".selectors").off();
                 checkAnswer();
             }
@@ -64,11 +89,9 @@ $(document).ready(function () {
     // user input function for reverse level
     function userReverseInput() {
         $(".selectors").click(function() {
-            $(this).children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 700);
+            $(this).children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 500);
             idVar = $(this).attr("id").split("-");
             userEntry.push(idVar[1]);
-            console.log("button pushed " + idVar[1]);
-            console.log("user array " + userEntry);
             setTimeout(function(){
                 var sound2 = "#tone" + idVar[1];  // slight delay to enable idvar to be defined
                 $(sound2)[0].play();
@@ -76,8 +99,6 @@ $(document).ready(function () {
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
             if (userEntry.length === key.length) {
-                console.log(userEntry.length);
-                console.log(key.length);
                 $(".selectors").off();
                 checkReverseAnswer();
             }
@@ -88,10 +109,11 @@ $(document).ready(function () {
     function checkAnswer() {
         var answer = key.join(", ");
         var check = userEntry.join(", ");
-        console.log("answer string " + answer);
-        console.log("check string " + check);
         if (answer === check) {
-            console.log("correct");
+            setTimeout(function(){
+                $("#roundBell").prop("volume", 0.25);
+                $("#roundBell")[0].play();
+            }, 900);
             gameRound();
         } else {
             setTimeout(function(){
@@ -100,8 +122,6 @@ $(document).ready(function () {
             $("#status").html("<h1>Game Over</h1>");
             finalScore = key.length - 1;
             $("#difficulty").removeAttr("disabled");
-            console.log("what a looser!");
-            console.log(finalScore);
             highScoreCheck();
         }
     }
@@ -111,10 +131,11 @@ $(document).ready(function () {
         userEntry.reverse();
         var answer = key.join(", ");
         var check = userEntry.join(", ");
-        console.log("answer string " + answer);
-        console.log("check string " + check);
         if (answer === check) {
-            console.log("correct");
+            setTimeout(function(){
+                $("#roundBell").prop("volume", 0.25);
+                $("#roundBell")[0].play();
+            }, 900);
             gameRoundReverse();
         } else {
             setTimeout(function(){
@@ -123,8 +144,7 @@ $(document).ready(function () {
             $("#status").html("<h1>Game Over</h1>");
             finalScore = (key.length - 1) * 2;
             $("#difficulty").removeAttr("disabled");
-            console.log("what a looser!");
-            console.log(finalScore);
+
             highScoreCheckReverse();
         }
     }
@@ -132,6 +152,11 @@ $(document).ready(function () {
     // function to add all function for a game round
     function gameRound() {
         userEntry.length = 0; // clears previous round entry
+        if (key.length >= 6){      //after round 6 the play sequence speeds up
+            level = [500, 300];
+        }else if (key.length > 14){
+            level = [200, 100];
+        }
         setTimeout(function () {
             randomGenerator();
             addToKey();
@@ -143,6 +168,11 @@ $(document).ready(function () {
 
     // game round for reverse level
     function gameRoundReverse() {
+        if (key.length >= 6){      //after round 6 the play sequence speeds up
+            level = [500, 300];
+        }else if (key.length > 14){
+            level = [200, 100];
+        }
         userEntry.length = 0; // clears previous round entry
         setTimeout(function () {
             randomGenerator();
@@ -231,7 +261,6 @@ $(document).ready(function () {
     //selector for difficulty
     $("#difficulty").change(function() {
         i++ ; //keep track of number of toggles
-        console.log("value of i " + i);
         $("body").toggleClass("reverse");  //reversing css on page
         $(".dummy").toggleClass("active");
         $(".x2").toggle();
@@ -243,7 +272,6 @@ $(document).ready(function () {
             starterReverse();
         }
     });
-
 
 
 starter();
