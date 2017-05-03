@@ -60,7 +60,6 @@ $(document).ready(function () {
                     entered = "4";
                     break;
             }userEntry.push(entered);
-            console.log(userEntry);
             var highlight = ".a-" + entered;
             $(highlight).css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 200);
             var sound2 = "#tone" + entered;// slight delay to enable idvar to be defined
@@ -86,7 +85,6 @@ $(document).ready(function () {
                 audio2.pause();
                 audio2.currentTime = 0;
                 audio2.play();
-                // $(sound2)[0].play();
             }, 50);
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
@@ -117,7 +115,6 @@ $(document).ready(function () {
                     entered = "4";
                     break;
             }userEntry.push(entered);
-            console.log(userEntry);
             var highlight = ".a-" + entered;
             $(highlight).css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 200);
             var sound2 = "#tone" + entered;// slight delay to enable idvar to be defined
@@ -142,7 +139,6 @@ $(document).ready(function () {
                 audio2.pause();
                 audio2.currentTime = 0;
                 audio2.play();
-                // $(sound2)[0].play();
             }, 50);
 
             // if they have entered as many entries as the key it will check answer. if not they can continue to input
@@ -290,6 +286,7 @@ $(document).ready(function () {
             }, 3500);
         }
         finalScore = ' ';
+        level = [200, 600];
         starter();
     }
 
@@ -304,6 +301,7 @@ $(document).ready(function () {
             }, 3500);
         }
         finalScore = ' ';
+        level = [200, 600];
         starterReverse();
     }
     var i = 0;
