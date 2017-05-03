@@ -66,18 +66,16 @@ $(document).ready(function () {
             audio2.pause();
             audio2.currentTime = 0;
             audio2.play();
-            if (userEntry.length === key.length) {
-                checkAnswer();
+
                 $(document).off();
                 $(".selectors").off();
-            }
+                checkAnswer();
 
         });
         $(".selectors").click(function() {
             $(this).children().last().css({opacity: 1.0, visibility: "visible"}).animate({opacity: 0}, 200);
             idVar = $(this).attr("id").split("-");
             userEntry.push(idVar[1]);
-            $("audio").stop();
             setTimeout(function(){
             var sound2 = "#tone" + idVar[1];// slight delay to enable idvar to be defined
                 var audio2 = $(sound2)[0];
@@ -86,12 +84,10 @@ $(document).ready(function () {
                 audio2.play();
             }, 50);
 
-            // if they have entered as many entries as the key it will check answer. if not they can continue to input
-            if (userEntry.length === key.length) {
+
                 $(".selectors").off();
                 $(document).off();
                 checkAnswer();
-            }
         })
     }
 
@@ -120,11 +116,10 @@ $(document).ready(function () {
             audio2.pause();
             audio2.currentTime = 0;
             audio2.play();
-            if (userEntry.length === key.length) {
-                checkReverseAnswer();
                 $(document).off();
                 $(".selectors").off();
-            }
+                checkReverseAnswer();
+
         });
 
         $(".selectors").click(function() {
@@ -139,26 +134,33 @@ $(document).ready(function () {
                 audio2.play();
             }, 50);
 
-            // if they have entered as many entries as the key it will check answer. if not they can continue to input
-            if (userEntry.length === key.length) {
+
                 $(document).off();
                 $(".selectors").off();
                 checkReverseAnswer();
-            }
         })
     }
 
     // function to check answer
     function checkAnswer() {
-        var answer = key.join(", ");
+        var upToAnswer = key.splice(0, userEntry.length);
+        var answer = upToAnswer.join(", ");
         var check = userEntry.join(", ");
+
+
         if (answer === check) {
-            setTimeout(function(){
+            key = upToAnswer.concat(key);
+
+            if (userEntry.length === key.length) {
+                gameRound();
+                setTimeout(function(){
                 $("#roundBell").prop("volume", 0.25);
                 $("#roundBell")[0].play();
             }, 900);
-            gameRound();
-        } else {
+            }else {
+                userInput();
+            }
+        }else {
             setTimeout(function(){
                 $("#gameOver")[0].play();
             }, 400);
@@ -172,14 +174,21 @@ $(document).ready(function () {
     // function to check answers on reverse level
     function checkReverseAnswer() {
         userEntry.reverse();
-        var answer = key.join(", ");
+        var upToAnswer = key.splice((key.length - userEntry.length), userEntry.length);
+        var answer = upToAnswer.join(", ");
         var check = userEntry.join(", ");
         if (answer === check) {
-            setTimeout(function(){
-                $("#roundBell").prop("volume", 0.25);
-                $("#roundBell")[0].play();
-            }, 900);
-            gameRoundReverse();
+            key = key.concat(upToAnswer);
+            userEntry.reverse();
+            if (userEntry.length === key.length) {
+                gameRoundReverse();
+                setTimeout(function () {
+                    $("#roundBell").prop("volume", 0.25);
+                    $("#roundBell")[0].play();
+                }, 900);
+            }else {
+                userReverseInput();
+            }
         } else {
             setTimeout(function(){
                 $("#gameOver")[0].play();
