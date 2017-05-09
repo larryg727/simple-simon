@@ -148,8 +148,8 @@ $(document).ready(function () {
         var check = userEntry.join(", ");
 
 
-        if (answer === check) {
             key = upToAnswer.concat(key);
+        if (answer === check) {
 
             if (userEntry.length === key.length) {
                 gameRound();
@@ -177,8 +177,8 @@ $(document).ready(function () {
         var upToAnswer = key.splice((key.length - userEntry.length), userEntry.length);
         var answer = upToAnswer.join(", ");
         var check = userEntry.join(", ");
-        if (answer === check) {
             key = key.concat(upToAnswer);
+        if (answer === check) {
             userEntry.reverse();
             if (userEntry.length === key.length) {
                 gameRoundReverse();
