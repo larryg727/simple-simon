@@ -340,6 +340,13 @@ input:checked + .slider:before {
     #levelSwitch{
         bottom: -100px;
     }
+    #keyCnt {
+        /*display: inline-block;*/
+        position: absolute;
+        top: 100%;
+        text-align: center;
+        width: 100%;
+    }
 }
 @media screen and (max-width: 650px){
     #selectorContainer {
@@ -375,4 +382,13 @@ input:checked + .slider:before {
         text-align: center;
         bottom: 0;
     }
+
+    #keyCnt {
+        /*display: inline-block;*/
+        position: absolute;
+        top: 100%;
+        text-align: center;
+        width: 100%;
+    }
+
 }
